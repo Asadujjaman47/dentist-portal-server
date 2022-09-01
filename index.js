@@ -34,10 +34,16 @@ client.connect(err => {
             })
     })
 
+    app.get('/appointments', (req, res) => {
+        appointmentCollection.find({})
+            .toArray((err, documents) => {
+                res.send(documents);
+            })
+    })
 
     app.post('/appointmentByDate', (req, res) => {
         const date = req.body;
-        console.log(date.date);
+        // console.log(date.date);
         appointmentCollection.find({ date: date.date })
             .toArray((err, documents) => {
                 res.send(documents);
